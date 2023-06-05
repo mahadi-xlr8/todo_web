@@ -23,6 +23,12 @@ class Main extends React.Component {
     });
     this.setState({ data: temp });
   };
+  handleEdit=(id,value)=>{
+    const newData=this.state.data;
+    newData.find(e=>e.id===id).value=value
+    this.setState({data:newData})
+    
+  }
   handleNewData = (value) => {
     let { data, currentId } = this.state;
     currentId++;
@@ -56,7 +62,7 @@ class Main extends React.Component {
           {this.state.data
             .filter((e) => e.checked === false)
             .map((e) => (
-              <CheckBox key={e.id} data={e} onChange={this.handleChange} />
+              <CheckBox key={e.id} data={e} onChange={this.handleChange} onEdit={this.handleEdit}/>
             )).length != 0
             ? this.state.data
                 .filter((e) => e.checked === false)
@@ -66,6 +72,7 @@ class Main extends React.Component {
                       key={e.id}
                       data={e}
                       onChange={this.handleChange}
+                      onEdit={this.handleEdit}
                     />
                     <Priority
                       key={e.id +1000}
@@ -92,7 +99,7 @@ class Main extends React.Component {
           {this.state.data
             .filter((e) => e.checked === true)
             .map((e) => (
-              <CheckBox key={e.id} data={e} onChange={this.handleChange} />
+              <CheckBox key={e.id} data={e} onChange={this.handleChange} onEdit={this.handleEdit}/>
             )).length != 0
             ? this.state.data
                 .filter((e) => e.checked === true)
@@ -102,6 +109,7 @@ class Main extends React.Component {
                       key={e.id}
                       data={e}
                       onChange={this.handleChange}
+                      onEdit={this.handleEdit}
                     />
                     <Delete
                       onDelete={this.handleDelete}

@@ -8,13 +8,17 @@ const CheckBox = (props) => {
         id={String(props.data.id)}
         checked={props.data.checked}
         onChange={() => props.onChange(props.data.id)}
+        
       />
-      <label
-        htmlFor={String(props.data.id)}
+      <input
+        type='text'
         className={props.data.checked ? "checked" : "unchecked"}
-      >
-        {props.data.value}
-      </label>
+        value={props.data.value}
+        style={{width:`${props.data.value.length-props.data.value.length/3}rem`}}
+        onChange={(e)=>props.onEdit(props.data.id,e.target.value)}
+      />
+
+
     </div>
   );
 };
